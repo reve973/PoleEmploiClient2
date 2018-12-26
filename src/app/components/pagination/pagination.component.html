@@ -1,0 +1,24 @@
+<!-- Pagination -->
+<nav *ngIf="page != null" aria-label="Page navigation">
+    <ul class="pagination justify-content-end">
+
+        <li *ngIf="page.totalPages>0" [ngClass]="page.number == 0 ? 'page-item disabled ' : 'page-item'">
+            <a class="page-link" (click)="goToPage(page.number-1)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+        </li>
+
+
+        <li *ngFor="let p of array(page.totalPages), index as i" [ngClass]="i == page.number ? 'page-item active ' : 'page-item'">
+            <a class="page-link active" (click)="goToPage(i)">{{i + 1}}</a>
+        </li>
+
+
+      <!--  <li ngIf="page.totalPages>0" ngClass="i == page.number ? 'page-item active ' : 'page-item'"
+            *ngFor="let p of Array(page.totalPages-1).fill(0)">
+            <a class="page-link active" href="${'javascript:goPage(' + i + ')'}" stext="${i + 1}"></a>
+        </li>
+    -->
+        <li *ngIf="page.totalPages>0" [ngClass]="page.number == page.totalPages-1 ? 'page-item disabled ' : 'page-item'">
+            <a class="page-link" (click)="goToPage(page.number+1)" tabindex="-1"><i class="fas fa-angle-right"></i></a>
+        </li>
+    </ul>
+</nav>

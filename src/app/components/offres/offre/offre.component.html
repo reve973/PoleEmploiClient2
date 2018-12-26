@@ -1,0 +1,64 @@
+<div *ngIf="offre!=null">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Offre de poste</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="height:600px">
+    
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a href="#caracteristique" class="nav-link active" data-toggle="tab">Caractéristiques</a>
+      </li>
+      <li class="nav-item">
+        <a href="#carte" class="nav-link" data-toggle="tab">Localisation</a>
+      </li>
+    </ul>
+
+    <div class="tab-content clearfix">
+      <div class="tab-pane active" id="caracteristique">
+        <br>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Entreprise</label>
+          <label class="col-9 col-lg-10 123">XXXXXXXX</label>					
+        </div>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Titre</label>
+          <label class="col-9  col-lg-10">{{offre.titre}}</label>					
+        </div>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Parution</label>
+          <label class="col-9 col-lg-10">{{offre.dtParution | date : 'dd/MM/yyyy'}}</label>					
+        </div>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Salaire brut</label>
+          <label class="col-9 col-lg-10">{{offre.salaireBrut}} euros</label>					
+        </div>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Contrat</label>
+          <label class="col-9 col-lg-10">{{offre.contrat.nom}}</label>					
+        </div>
+        <div class="row">
+          <label class="font-weight-bold col-3 col-lg-2">Durée</label>
+          <label class="col-9 col-lg-10">{{offre.dureeContrat}} mois</label>					
+        </div>
+        <div class="row">
+            <label class="font-weight-bold col-3 col-lg-2">Description</label>
+            <label class="col-9 col-lg-10">{{offre.description}}</label>					
+          </div>    
+      </div>
+      <div class="tab-pane" id="carte">
+
+        <a (click)="initMap()">Charger la carte</a>
+        <div id="map"></div>    
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="isCandidat" [appVisibilityAuth]="['ROLE_CANDIDAT']" type="button" class="btn btn-outline-secondary" (click)="annulerCandidature()">Ne plus postuler</button>
+    <button *ngIf="!isCandidat" [appVisibilityAuth]="['ROLE_CANDIDAT']" type="button" class="btn btn-outline-secondary" (click)="creerCandidature()">Postuler</button>
+  </div>
+</div>
